@@ -18,7 +18,7 @@ extension Note {
 
     @NSManaged public var name: String?
     @NSManaged public var content: String?
-    @NSManaged public var date: Date?
+    @NSManaged public var date: Date
     @NSManaged public var id: UUID?
     @NSManaged public var is_in: Folder?
 

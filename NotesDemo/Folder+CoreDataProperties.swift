@@ -18,6 +18,14 @@ extension Folder {
 
     @NSManaged public var name: String?
     @NSManaged public var contains: NSSet?
+    
+    
+    public var wContains: [Note]{
+        let notes = contains as? Set<Note> ?? []
+        return notes.sorted(by: {firstNote, secondNote -> Bool in
+            return firstNote.date < secondNote.date
+            })
+    }
 
 }
 

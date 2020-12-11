@@ -11,7 +11,11 @@ struct NoteView: View {
     var folder: Folder
     @Environment(\.managedObjectContext) private var viewContext
     var body: some View {
-        Text(folder.name ?? "Unknown")
+        List{
+            ForEach(self.folder.wContains){ note in
+                Text(note.name ?? "Unknown")
+            }
+        }
     }
 }
 
