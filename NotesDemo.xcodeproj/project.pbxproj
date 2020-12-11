@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		801416C72583D38A00DC0F0B /* Folder+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801416C32583D38A00DC0F0B /* Folder+CoreDataClass.swift */; };
+		801416C82583D38B00DC0F0B /* Folder+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801416C42583D38A00DC0F0B /* Folder+CoreDataProperties.swift */; };
+		801416C92583D38B00DC0F0B /* Note+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801416C52583D38A00DC0F0B /* Note+CoreDataClass.swift */; };
+		801416CA2583D38B00DC0F0B /* Note+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801416C62583D38A00DC0F0B /* Note+CoreDataProperties.swift */; };
 		80E4713325838E760015A7C9 /* NotesDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E4713225838E760015A7C9 /* NotesDemoApp.swift */; };
 		80E4713525838E760015A7C9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E4713425838E760015A7C9 /* ContentView.swift */; };
 		80E4713725838E790015A7C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80E4713625838E790015A7C9 /* Assets.xcassets */; };
@@ -16,6 +20,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		801416C32583D38A00DC0F0B /* Folder+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Folder+CoreDataClass.swift"; path = "NotesDemo/Folder+CoreDataClass.swift"; sourceTree = "<group>"; };
+		801416C42583D38A00DC0F0B /* Folder+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Folder+CoreDataProperties.swift"; path = "NotesDemo/Folder+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		801416C52583D38A00DC0F0B /* Note+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Note+CoreDataClass.swift"; path = "NotesDemo/Note+CoreDataClass.swift"; sourceTree = "<group>"; };
+		801416C62583D38A00DC0F0B /* Note+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Note+CoreDataProperties.swift"; path = "NotesDemo/Note+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		80E4712F25838E760015A7C9 /* NotesDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NotesDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80E4713225838E760015A7C9 /* NotesDemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesDemoApp.swift; sourceTree = "<group>"; };
 		80E4713425838E760015A7C9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -40,6 +48,10 @@
 		80E4712625838E750015A7C9 = {
 			isa = PBXGroup;
 			children = (
+				801416C32583D38A00DC0F0B /* Folder+CoreDataClass.swift */,
+				801416C42583D38A00DC0F0B /* Folder+CoreDataProperties.swift */,
+				801416C52583D38A00DC0F0B /* Note+CoreDataClass.swift */,
+				801416C62583D38A00DC0F0B /* Note+CoreDataProperties.swift */,
 				80E4713125838E760015A7C9 /* NotesDemo */,
 				80E4713025838E760015A7C9 /* Products */,
 			);
@@ -145,7 +157,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				80E4713F25838E790015A7C9 /* NotesDemo.xcdatamodeld in Sources */,
+				801416CA2583D38B00DC0F0B /* Note+CoreDataProperties.swift in Sources */,
+				801416C92583D38B00DC0F0B /* Note+CoreDataClass.swift in Sources */,
+				801416C82583D38B00DC0F0B /* Folder+CoreDataProperties.swift in Sources */,
 				80E4713C25838E790015A7C9 /* Persistence.swift in Sources */,
+				801416C72583D38A00DC0F0B /* Folder+CoreDataClass.swift in Sources */,
 				80E4713525838E760015A7C9 /* ContentView.swift in Sources */,
 				80E4713325838E760015A7C9 /* NotesDemoApp.swift in Sources */,
 			);
