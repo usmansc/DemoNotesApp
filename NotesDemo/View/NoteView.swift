@@ -14,7 +14,9 @@ struct NoteView: View {
         VStack {
             List{
                 ForEach(self.folder.wContains){ note in
-                    Text(note.name ?? "Unknown")
+                    NavigationLink(destination:NoteDetailView(title: note.name ?? "Unknown", text: note.content ?? "Unknown", folder:self.folder,id: note.id)){
+                        Text(note.name ?? "Unknown")
+                    }
                 }
             }
             .navigationBarTitle(self.folder.name ?? "Unknown")
@@ -24,9 +26,9 @@ struct NoteView: View {
                 NavigationLink(destination: NoteDetailView(folder: self.folder)){
                     Text("Nová poznámka")
                 }
-                }
-        )
-
+            }
+            )
+            
         }
         
     }

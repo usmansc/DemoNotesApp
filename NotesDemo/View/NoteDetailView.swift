@@ -12,6 +12,7 @@ struct NoteDetailView: View {
     @State var text: String = ""
     var folder: Folder
     @Environment(\.managedObjectContext) private var viewContext
+    var id: UUID?
     var body: some View {
         VStack{
             TextField("Názov", text: $title).font(.title)
