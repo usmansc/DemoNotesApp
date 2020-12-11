@@ -22,7 +22,15 @@ struct FolderView: View {
                         NavigationLink(destination: NoteView(folder:folder).environment(\.managedObjectContext, self.viewContext)){
                             Text(folder.name ?? "Unknown")
                                                 }
-                    }
+                    }.onDelete(perform: { indexSet in
+                        indexSet.map{self.folders[$0]}.forEach(self.viewContext.delete)
+                        do{
+                            try self.viewContext.save()
+                        }catch {
+                            print("TODO Proper errror handling")
+                        }
+
+                    })
                 }
                 .navigationBarTitle("Priečinky")
                 .disabled(self.alert)
