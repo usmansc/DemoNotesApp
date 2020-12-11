@@ -23,7 +23,14 @@ struct NoteView: View {
                     NavigationLink(destination:NoteDetailView(title: note.name ?? "Unknown", text: note.content ?? "Unknown", folder:self.folder,id: note.id,changed: UUID())){
                         Text(note.name ?? "Unknown")
                     }
-                }
+                }.onDelete(perform: { indexSet in
+                    indexSet.map{self.notes[$0]}.forEach(self.viewContext.delete)
+                    do{
+                        try self.viewContext.save()
+                    }catch {
+                        print("TODO Proper errror handling")
+                    }
+                })
             }
             .navigationBarTitle(self.folder.name ?? "Unknown")
             .navigationBarItems(trailing: Button(action:{
