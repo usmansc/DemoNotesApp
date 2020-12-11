@@ -14,6 +14,7 @@
 		801416D82583D57A00DC0F0B /* FolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801416D72583D57A00DC0F0B /* FolderView.swift */; };
 		801416DB2583D59200DC0F0B /* NoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801416DA2583D59200DC0F0B /* NoteView.swift */; };
 		801416DE2583D59900DC0F0B /* NoteDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801416DD2583D59900DC0F0B /* NoteDetailView.swift */; };
+		8047D7C825840820002F0D65 /* MultiLineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8047D7C725840820002F0D65 /* MultiLineTextField.swift */; };
 		80E4713325838E760015A7C9 /* NotesDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E4713225838E760015A7C9 /* NotesDemoApp.swift */; };
 		80E4713725838E790015A7C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80E4713625838E790015A7C9 /* Assets.xcassets */; };
 		80E4713A25838E790015A7C9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80E4713925838E790015A7C9 /* Preview Assets.xcassets */; };
@@ -29,6 +30,7 @@
 		801416D72583D57A00DC0F0B /* FolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderView.swift; sourceTree = "<group>"; };
 		801416DA2583D59200DC0F0B /* NoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteView.swift; sourceTree = "<group>"; };
 		801416DD2583D59900DC0F0B /* NoteDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteDetailView.swift; sourceTree = "<group>"; };
+		8047D7C725840820002F0D65 /* MultiLineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiLineTextField.swift; sourceTree = "<group>"; };
 		80E4712F25838E760015A7C9 /* NotesDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NotesDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80E4713225838E760015A7C9 /* NotesDemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesDemoApp.swift; sourceTree = "<group>"; };
 		80E4713625838E790015A7C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -55,6 +57,7 @@
 				801416D72583D57A00DC0F0B /* FolderView.swift */,
 				801416DA2583D59200DC0F0B /* NoteView.swift */,
 				801416DD2583D59900DC0F0B /* NoteDetailView.swift */,
+				8047D7C725840820002F0D65 /* MultiLineTextField.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -173,6 +176,7 @@
 				80E4713F25838E790015A7C9 /* NotesDemo.xcdatamodeld in Sources */,
 				801416D42583D4C700DC0F0B /* Folder+CoreDataProperties.swift in Sources */,
 				801416D32583D4C700DC0F0B /* Folder+CoreDataClass.swift in Sources */,
+				8047D7C825840820002F0D65 /* MultiLineTextField.swift in Sources */,
 				80E4713C25838E790015A7C9 /* Persistence.swift in Sources */,
 				801416D12583D4C700DC0F0B /* Note+CoreDataClass.swift in Sources */,
 				801416DB2583D59200DC0F0B /* NoteView.swift in Sources */,
