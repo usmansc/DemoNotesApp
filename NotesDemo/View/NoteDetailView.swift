@@ -18,7 +18,18 @@ struct NoteDetailView: View {
             Divider()
             MultiLineTextField(text: $text)
             }.padding().navigationBarItems(trailing: Button(action:{
-                //self.notesModel.addNote(name: self.title, id: self.id, text: self.text,folder:self.folder)
+                do{
+                    let note = Note(context: self.viewContext)
+                    note.content = self.text
+                    note.name = self.title
+                    note.date = Date()
+                    note.id = UUID()
+                    note.is_in = self.folder
+                    try self.viewContext.save()
+                }catch{
+                    print("TODO: Handle err")
+                }
+                
                 UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                 
             }){Text("Uložiť zmeny")})
