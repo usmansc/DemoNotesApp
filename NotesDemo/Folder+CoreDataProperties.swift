@@ -17,7 +17,24 @@ extension Folder {
     }
 
     @NSManaged public var name: String?
-    @NSManaged public var contains: Note?
+    @NSManaged public var contains: NSSet?
+
+}
+
+// MARK: Generated accessors for contains
+extension Folder {
+
+    @objc(addContainsObject:)
+    @NSManaged public func addToContains(_ value: Note)
+
+    @objc(removeContainsObject:)
+    @NSManaged public func removeFromContains(_ value: Note)
+
+    @objc(addContains:)
+    @NSManaged public func addToContains(_ values: NSSet)
+
+    @objc(removeContains:)
+    @NSManaged public func removeFromContains(_ values: NSSet)
 
 }
 

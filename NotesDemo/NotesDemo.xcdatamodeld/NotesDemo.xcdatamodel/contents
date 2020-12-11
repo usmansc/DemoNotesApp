@@ -2,7 +2,7 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17511" systemVersion="20B50" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
     <entity name="Folder" representedClassName="Folder" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String"/>
-        <relationship name="contains" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Note" inverseName="is_in" inverseEntity="Note"/>
+        <relationship name="contains" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Note" inverseName="is_in" inverseEntity="Note"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
                 <constraint value="name"/>
