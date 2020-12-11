@@ -11,11 +11,24 @@ struct NoteView: View {
     var folder: Folder
     @Environment(\.managedObjectContext) private var viewContext
     var body: some View {
-        List{
-            ForEach(self.folder.wContains){ note in
-                Text(note.name ?? "Unknown")
+        VStack {
+            List{
+                ForEach(self.folder.wContains){ note in
+                    Text(note.name ?? "Unknown")
+                }
             }
+            .navigationBarTitle(self.folder.name ?? "Unknown")
+            .navigationBarItems(trailing: Button(action:{
+                
+            }){
+                NavigationLink(destination: NoteDetailView()){
+                    Text("Nová poznámka")
+                }
+                }
+        )
+
         }
+        
     }
 }
 
