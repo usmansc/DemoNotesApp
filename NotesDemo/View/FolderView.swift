@@ -19,7 +19,9 @@ struct FolderView: View {
             ZStack {
                 List{
                     ForEach(folders){ folder in
-                        Text(folder.name ?? "Unknown")
+                        NavigationLink(destination: NoteView(folder:folder).environment(\.managedObjectContext, self.viewContext)){
+                            Text(folder.name ?? "Unknown")
+                                                }
                     }
                 }
                 .navigationBarTitle("Priečinky")
