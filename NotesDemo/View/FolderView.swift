@@ -32,7 +32,7 @@ struct FolderView: View {
                                         })
                 if(alert){
                     VStack{
-                        NewFolderAlert(shown: self.$alert)
+                        NewFolderAlert(shown: self.$alert).environment(\.managedObjectContext, self.viewContext)
                             .frame(width: 300, height: 200, alignment: .center).background(Color.black).cornerRadius(30)
                         Spacer()
                     }.padding()
@@ -53,7 +53,7 @@ struct FolderView_Previews: PreviewProvider {
 struct NewFolderAlert: View{
     @State private var text = ""
     @Binding<Bool> var shown: Bool
-    //@EnvironmentObject var folderModel: FoldersViewModel
+    @Environment(\.managedObjectContext) private var viewContext
     var body: some View{
         VStack{
             Text("Nový priečinok").foregroundColor(.white)
@@ -63,7 +63,14 @@ struct NewFolderAlert: View{
                 self.shown.toggle()
                 let trimmed = self.text.trimmingCharacters(in: .whitespacesAndNewlines)
                 if(trimmed.count > 0){
-                    //self.folderModel.addFolder(folder: trimmed)
+                    do{
+                        let folder = Folder(context: self.viewContext)
+                        folder.name = trimmed
+                        try self.viewContext.save()
+                    }catch{
+                        print("TODO: handle err")
+                    }
+                    
                 }
             }){
                 Text("Uložiť")
