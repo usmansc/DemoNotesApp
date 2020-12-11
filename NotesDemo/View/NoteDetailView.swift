@@ -8,13 +8,25 @@
 import SwiftUI
 
 struct NoteDetailView: View {
+    @State var title: String = ""
+    @State var text: String = ""
+    var folder: Folder
+    @Environment(\.managedObjectContext) private var viewContext
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack{
+            TextField("Názov", text: $title).font(.title)
+            Divider()
+            MultiLineTextField(text: $text)
+            }.padding().navigationBarItems(trailing: Button(action:{
+                //self.notesModel.addNote(name: self.title, id: self.id, text: self.text,folder:self.folder)
+                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                
+            }){Text("Uložiť zmeny")})
     }
 }
 
 struct NoteDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        NoteDetailView()
+        NoteDetailView(folder: Folder())
     }
 }

@@ -21,7 +21,7 @@ struct NoteView: View {
             .navigationBarItems(trailing: Button(action:{
                 
             }){
-                NavigationLink(destination: NoteDetailView()){
+                NavigationLink(destination: NoteDetailView(folder: self.folder)){
                     Text("Nová poznámka")
                 }
                 }
