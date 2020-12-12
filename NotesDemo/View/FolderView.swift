@@ -20,7 +20,10 @@ struct FolderView: View {
                 List{
                     ForEach(folders){ folder in
                         NavigationLink(destination: NoteView(folder:folder).environment(\.managedObjectContext, self.viewContext)){
-                            Text(folder.name ?? "Unknown")
+                            VStack(alignment:.leading){
+                                Text(folder.name ?? "Unknown")
+                                Text(formatDate(folder.date))
+                            }
                                                 }
                     }.onDelete(perform: { indexSet in
                         indexSet.map{self.folders[$0]}.forEach(self.viewContext.delete)
@@ -52,6 +55,16 @@ struct FolderView: View {
             }
         }
     }
+    
+    private func formatDate(_ date: Date?) -> String{
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm E, d MMM y"
+        if let date = date{
+            return formatter.string(from: date)
+        }
+        return "Unknown"
+        
+    }
 }
 
 struct FolderView_Previews: PreviewProvider {
@@ -76,7 +89,9 @@ struct NewFolderAlert: View{
                     do{
                         let folder = Folder(context: self.viewContext)
                         folder.name = trimmed
+                        folder.date = Date()
                         try self.viewContext.save()
+
                     }catch{
                         print("TODO: handle err")
                     }
