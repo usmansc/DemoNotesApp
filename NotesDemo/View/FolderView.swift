@@ -17,7 +17,7 @@ struct FolderView: View {
             ZStack {
                 List{
                     ForEach(viewModel.folders){ folder in
-                        NavigationLink(destination: NoteView(folder:folder)){
+                        NavigationLink(destination: NoteView(folder:folder,viewModel:NoteView.NoteModel.init(moc: self.viewContext, folder: folder))){
                             VStack(alignment:.leading){
                                 Text(folder.name ?? "Unknown")
                                 Text(formatDate(folder.date))

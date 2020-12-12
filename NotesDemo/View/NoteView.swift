@@ -10,33 +10,21 @@ import SwiftUI
 struct NoteView: View {
     var folder: Folder
     @Environment(\.managedObjectContext) private var viewContext
-    @FetchRequest var notes: FetchedResults <Note>
-    init(folder:Folder) {
-        self.folder = folder
-        
-        self._notes = FetchRequest(entity: Note.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Note.date, ascending: true)], predicate: NSPredicate(format: "is_in = %@",folder))
-    }
+    @ObservedObject var viewModel: NoteModel
     var body: some View {
         VStack {
             List{
-                ForEach(notes){ note in
-                    NavigationLink(destination:NoteDetailView(title: note.name ?? "Unknown", text: note.content ?? "Unknown", folder:self.folder,id: note.id,changed: UUID())){
+                ForEach(self.viewModel.notes){ note in
+                    NavigationLink(destination:NoteDetailView(title: note.name ?? "Unknown", text: note.content ?? "Unknown", folder:self.folder,id: note.id,viewModel: self.viewModel)){
                         Text(note.name ?? "Unknown")
                     }
-                }.onDelete(perform: { indexSet in
-                    indexSet.map{self.notes[$0]}.forEach(self.viewContext.delete)
-                    do{
-                        try self.viewContext.save()
-                    }catch {
-                        print("TODO Proper errror handling")
-                    }
-                })
+                }.onDelete(perform: self.viewModel.removeNote)
             }
             .navigationBarTitle(self.folder.name ?? "Unknown")
             .navigationBarItems(trailing: Button(action:{
                 
             }){
-                NavigationLink(destination: NoteDetailView(folder: self.folder, changed: UUID())){
+                NavigationLink(destination: NoteDetailView(folder: self.folder, viewModel: self.viewModel)){
                     Text("Nová poznámka")
                 }
             }
@@ -45,12 +33,4 @@ struct NoteView: View {
         }
         
     }
-}
-
-struct NoteView_Previews: PreviewProvider {
-    static var previews: some View {
-        NoteView(folder: Folder())
-    }
-    
-
 }
