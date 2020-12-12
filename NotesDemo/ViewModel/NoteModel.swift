@@ -7,11 +7,13 @@
 
 import Foundation
 import CoreData
+import SwiftUI
 
 extension NoteView{
     final class NoteModel:NSObject, ObservableObject, NSFetchedResultsControllerDelegate{
         private let controller :  NSFetchedResultsController<Note>
-        
+        public var alert = false
+        public var alertMessage = ""
         init(moc: NSManagedObjectContext,folder: Folder) {
             let sortDescriptors = [NSSortDescriptor(keyPath: \Note.date, ascending: true)]
             
@@ -21,8 +23,10 @@ extension NoteView{
             controller.delegate = self
             do{
                 try controller.performFetch()
+                alert = false
             }catch{
-                print("Err handle here")
+                alert =  true
+                alertMessage = "Chyba pri načítaní poznámok"
             }
         }
         
@@ -68,8 +72,10 @@ extension NoteView{
         func saveContext(){
             do{
                 try controller.managedObjectContext.save()
+                alert = false
             }catch {
-                print("TODO Proper errror handling")
+                alert =  true
+                alertMessage = "Chyba pri ukladaní poznámok"
             }
         }
     }

@@ -30,6 +30,8 @@ struct NoteView: View {
             }
             )
             
+        }.alert(isPresented: self.$viewModel.alert){
+            Alert(title: Text("Chyba"), message: Text(viewModel.alertMessage), dismissButton: .default(Text("Rozumiem")))
         }
         
     }

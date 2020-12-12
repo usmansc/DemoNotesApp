@@ -7,11 +7,13 @@
 
 import Foundation
 import CoreData
+import SwiftUI
 
 extension FolderView{
     final class FolderModel: NSObject, ObservableObject, NSFetchedResultsControllerDelegate{
         private let controller :  NSFetchedResultsController<Folder>
-        
+        public var alert = false
+        public var alertMessage = ""
         init(moc: NSManagedObjectContext) {
             let sortDescriptors = [NSSortDescriptor(keyPath: \Folder.name, ascending: true)]
             controller = Folder.resultsController(moc: moc, sortDescriptors: sortDescriptors)
@@ -20,8 +22,10 @@ extension FolderView{
             controller.delegate = self
             do{
                 try controller.performFetch()
+                alert = false
             }catch{
-                print("Err handle here")
+                alert =  true
+                alertMessage = "Chyba pri načítaní priečinkov"
             }
         }
         
@@ -47,8 +51,10 @@ extension FolderView{
         func saveContext(){
             do{
                 try controller.managedObjectContext.save()
+                alert = false
             }catch {
-                print("TODO Proper errror handling")
+                alert =  true
+                alertMessage = "Chyba pri ukladaní priečinkov"
             }
         }
         

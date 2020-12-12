@@ -11,7 +11,6 @@ struct FolderView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @ObservedObject var viewModel: FolderModel // viewModel spravujuci priecinky
     @State private var alert = false // urcuje viditelnost alert boxu
-    
     var body: some View {
         NavigationView{
             ZStack {
@@ -42,6 +41,8 @@ struct FolderView: View {
                     
                 }
                 
+            }.alert(isPresented: self.$viewModel.alert){
+                Alert(title: Text("Chyba"), message: Text(viewModel.alertMessage), dismissButton: .default(Text("Rozumiem")))
             }
         }
     }
