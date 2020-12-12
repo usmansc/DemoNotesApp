@@ -15,6 +15,12 @@ extension Folder {
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Folder> {
         return NSFetchRequest<Folder>(entityName: "Folder")
     }
+    
+    @nonobjc public class func resultsController(moc: NSManagedObjectContext, sortDescriptors: [NSSortDescriptor]) -> NSFetchedResultsController<Folder> {
+        let request =  NSFetchRequest<Folder>(entityName: "Folder")
+        request.sortDescriptors = sortDescriptors
+        return NSFetchedResultsController(fetchRequest: request, managedObjectContext: moc, sectionNameKeyPath: nil, cacheName: nil)
+    }
 
     @NSManaged public var name: String?
     @NSManaged public var date: Date?

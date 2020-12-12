@@ -9,31 +9,21 @@ import SwiftUI
 
 struct FolderView: View {
     @Environment(\.managedObjectContext) private var viewContext
-    
-    @FetchRequest(entity: Folder.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Folder.name, ascending: true)]) var folders : FetchedResults <Folder>
-    
+    @ObservedObject var viewModel: FolderModel
     @State private var alert = false
     
     var body: some View {
         NavigationView{
             ZStack {
                 List{
-                    ForEach(folders){ folder in
-                        NavigationLink(destination: NoteView(folder:folder).environment(\.managedObjectContext, self.viewContext)){
+                    ForEach(viewModel.folders){ folder in
+                        NavigationLink(destination: NoteView(folder:folder)){
                             VStack(alignment:.leading){
                                 Text(folder.name ?? "Unknown")
                                 Text(formatDate(folder.date))
                             }
-                                                }
-                    }.onDelete(perform: { indexSet in
-                        indexSet.map{self.folders[$0]}.forEach(self.viewContext.delete)
-                        do{
-                            try self.viewContext.save()
-                        }catch {
-                            print("TODO Proper errror handling")
                         }
-
-                    })
+                    }.onDelete(perform: self.viewModel.removeFolder)
                 }
                 .navigationBarTitle("Priečinky")
                 .disabled(self.alert)
@@ -45,7 +35,7 @@ struct FolderView: View {
                                         })
                 if(alert){
                     VStack{
-                        NewFolderAlert(shown: self.$alert).environment(\.managedObjectContext, self.viewContext)
+                        NewFolderAlert(viewModel: self.viewModel,shown: self.$alert)
                             .frame(width: 300, height: 200, alignment: .center).background(Color.black).cornerRadius(30)
                         Spacer()
                     }.padding()
@@ -67,16 +57,10 @@ struct FolderView: View {
     }
 }
 
-struct FolderView_Previews: PreviewProvider {
-    static var previews: some View {
-        FolderView()
-    }
-}
-
 struct NewFolderAlert: View{
+    @ObservedObject var viewModel: FolderView.FolderModel
     @State private var text = ""
     @Binding<Bool> var shown: Bool
-    @Environment(\.managedObjectContext) private var viewContext
     var body: some View{
         VStack{
             Text("Nový priečinok").foregroundColor(.white)
@@ -84,19 +68,7 @@ struct NewFolderAlert: View{
             TextField("Názov", text: $text).padding().foregroundColor(.white).overlay(RoundedRectangle(cornerRadius: 15).stroke(Color.gray))
             Button(action: {
                 self.shown.toggle()
-                let trimmed = self.text.trimmingCharacters(in: .whitespacesAndNewlines)
-                if(trimmed.count > 0){
-                    do{
-                        let folder = Folder(context: self.viewContext)
-                        folder.name = trimmed
-                        folder.date = Date()
-                        try self.viewContext.save()
-
-                    }catch{
-                        print("TODO: handle err")
-                    }
-                    
-                }
+                self.viewModel.addNewFolder(name: self.text.trimmingCharacters(in: .whitespacesAndNewlines))
             }){
                 Text("Uložiť")
             }

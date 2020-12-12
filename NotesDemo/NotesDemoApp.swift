@@ -13,7 +13,7 @@ struct NotesDemoApp: App {
 
     var body: some Scene {
         WindowGroup {
-            FolderView()
+            FolderView(viewModel: FolderView.FolderModel.init(moc: persistenceController.container.viewContext))
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
