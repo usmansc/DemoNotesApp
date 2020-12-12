@@ -9,8 +9,8 @@ import SwiftUI
 
 struct FolderView: View {
     @Environment(\.managedObjectContext) private var viewContext
-    @ObservedObject var viewModel: FolderModel
-    @State private var alert = false
+    @ObservedObject var viewModel: FolderModel // viewModel spravujuci priecinky
+    @State private var alert = false // urcuje viditelnost alert boxu
     
     var body: some View {
         NavigationView{
@@ -46,6 +46,7 @@ struct FolderView: View {
         }
     }
     
+    // Formatovanie datumu
     private func formatDate(_ date: Date?) -> String{
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm E, d MMM y"
@@ -57,6 +58,9 @@ struct FolderView: View {
     }
 }
 
+// Alert box s polom pre zadanie nazvu priecinku
+// -- parameter viewModel: viewModel spravujuci priecinky
+// -- parameter shown: binding urcujuci viditelnost alert boxu
 struct NewFolderAlert: View{
     @ObservedObject var viewModel: FolderView.FolderModel
     @State private var text = ""

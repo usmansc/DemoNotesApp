@@ -28,21 +28,22 @@ extension FolderView{
         func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
             objectWillChange.send()
         }
-        
+        // Vytvorenie priecinka
         func addNewFolder(name: String){
-            if(name.count > 0){
+            if(name.count > 0){ // Ak nie je nazov priecinku prazdny pokracujeme
                 let folder = Folder(context: controller.managedObjectContext)
                 folder.name = name
                 folder.date = Date()
                 saveContext()
             }
         }
-        
+        // Zmazanie priecinka
         func removeFolder(_ indexSet: IndexSet){
             indexSet.map{folders[$0]}.forEach(controller.managedObjectContext.delete)
             saveContext()
         }
         
+        // Ulozenie do CD
         func saveContext(){
             do{
                 try controller.managedObjectContext.save()

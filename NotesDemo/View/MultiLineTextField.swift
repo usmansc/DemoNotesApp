@@ -8,6 +8,8 @@
 import Foundation
 import SwiftUI
 
+// UIKit view do SwiftUI
+
 struct MultiLineTextField : UIViewRepresentable{
     
     @Binding var text: String

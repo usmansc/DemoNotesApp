@@ -9,12 +9,12 @@ import SwiftUI
 import CoreData
 
 struct NoteDetailView: View {
-    @State var title: String = ""
-    @State var text: String = ""
-    var folder: Folder
+    @State var title: String = "" // nazov poznamky
+    @State var text: String = "" // text poznamky
+    var folder: Folder // aktualny priecinok
     @Environment(\.managedObjectContext) private var viewContext
-    var id: UUID?
-    @ObservedObject var viewModel: NoteView.NoteModel
+    var id: UUID? // id poznamky , iba ak poznamku editujeme
+    @ObservedObject var viewModel: NoteView.NoteModel // viewModel spravujuci poznamky
     var body: some View {
         VStack{
             TextField("Názov", text: $title).font(.title)

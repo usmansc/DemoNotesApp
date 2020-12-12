@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct NoteView: View {
-    var folder: Folder
+    var folder: Folder // aktualny priecinok
     @Environment(\.managedObjectContext) private var viewContext
-    @ObservedObject var viewModel: NoteModel
+    @ObservedObject var viewModel: NoteModel // viewModel spravujuci poznamky
     var body: some View {
         VStack {
             List{
