@@ -10,8 +10,9 @@ import CoreData
 import SwiftUI
 
 extension NoteView{
-    final class NoteModel:NSObject, ObservableObject, NSFetchedResultsControllerDelegate{
+    final class NoteModel:NSObject, ObservableObject, NSFetchedResultsControllerDelegate{ // viewModel ktory sa stara o poznamky
         private let controller :  NSFetchedResultsController<Note>
+        // pre chybove hlasky
         public var alert = false
         public var alertMessage = ""
         init(moc: NSManagedObjectContext,folder: Folder) {

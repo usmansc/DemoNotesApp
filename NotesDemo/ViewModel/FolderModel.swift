@@ -10,8 +10,9 @@ import CoreData
 import SwiftUI
 
 extension FolderView{
-    final class FolderModel: NSObject, ObservableObject, NSFetchedResultsControllerDelegate{
+    final class FolderModel: NSObject, ObservableObject, NSFetchedResultsControllerDelegate{ // viewModel pre spravovanie priecinkov
         private let controller :  NSFetchedResultsController<Folder>
+        // pre chybove hlasky
         public var alert = false
         public var alertMessage = ""
         init(moc: NSManagedObjectContext) {
